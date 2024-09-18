@@ -1,0 +1,29 @@
+---
+import Spotlight from '../../components/cards/Spotlight.astro';
+
+const { frontmatter } = Astro.props;
+
+const towns = await Astro.glob("../../pages/community/towns/*.md");
+---
+
+<section class="flex w-full flex-col justify-center bg-center bg-cover" style=`background-image: url('../../../src/images/community/town-showcase.png');`>
+    <div class="backdrop-blur-lg">
+        <div class="container mx-auto flex flex-col items-center gap-2 px-4 py-8">
+            <h1 class="text-center text-4xl font-bold text-white">Towns</h1>
+            <h3 class="text-center text-sm font-light text-white bg-neutral-900 px-4 py-2">
+                Towns listed are not official and are created by the community.
+            </h3>
+        </div>
+    </div>
+</section>
+<section class="min-h-screen bg-neutral-900">
+    <div class="container px-4 mx-auto grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8 py-16">
+        {towns.length > 0 ? (
+            towns.map(town => 
+                <Spotlight title={town.frontmatter.name} image={town.frontmatter.image} description={town.frontmatter.description} action={`Explore ${town.frontmatter.name}`} url={town.url ?? ''}></Spotlight>
+            )
+        ) : (
+            <div class="text-white text-lg font-robotomono">Nothing to see here...</div>
+        )}
+    </div>
+</section>

@@ -1,0 +1,16 @@
+---
+interface Props {
+	title: string
+	fit?: string
+	url: string
+}
+
+const { title, fit = 'w-fit', url } = Astro.props
+---
+
+<a
+	href=`${url}`
+	class=`px-4 py-2 ${fit} transition duration-200 bg-transparent text-white text-md font-bold hover:bg-white hover:text-neutral-900 border-2 border-white`
+>
+	{title}
+</a>

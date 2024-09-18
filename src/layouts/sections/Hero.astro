@@ -1,0 +1,19 @@
+<section class="w-full h-screen bg-fixed bg-[url('/images/scene.webp')] bg-center bg-cover flex items-center">
+    <div class="container px-4 mx-auto flex flex-col">
+        <h1 class="text-white text-6xl font-bold">Simplicity at heart</h1>
+        <p1 class="text-white text-2xl mt-2 mb-8">Dedicated to fostering a straightforward and community-driven experience.</p1>
+        <p1 class="text-white text-lg font-light mb-2">Join <span id="player-count-display" class="bg-neutral-900 px-2 py-1 font-robotomono font-medium rounded-sm">0</span> other players today!</p1>
+        <button id="play-now" class="bg-white p-4 mr-auto font-bold rounded-t-2xl rounded-r-2xl transition-all duration-200 shadow-2xl hover:shadow-none hover:bg-neutral-100 hover:scale-95">PLAY NOW</button>
+    </div>
+</section>
+
+
+<script>
+    document.getElementById("play-now").onclick = function () {
+        location.href = "/support/how-do-I-join-the-server";
+    };
+
+    fetch("https://mcapi.us/server/status?ip=play.novamon.net")
+  		.then((response) => response.json())
+  		.then((data) => document.getElementById("player-count-display").innerHTML = data.players.now);
+</script>
